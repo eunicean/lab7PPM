@@ -13,7 +13,8 @@ android {
     targetSdkVersion 31
     versionCode 1
     versionName "1.0"
-    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner "com.raywenderlich.rwnews.runner.HiltTestRunner"
   }
   buildTypes {
     release {
@@ -67,21 +68,26 @@ dependencies {
   implementation "androidx.constraintlayout:constraintlayout:$constraints_layout_version"
 
   implementation "com.google.dagger:hilt-android:$hilt_android_version"
-  testImplementation 'junit:junit:4.12'
+  androidTestImplementation project(path: ':app')
+  androidTestImplementation project(path: ':app')
   kapt "com.google.dagger:hilt-compiler:$hilt_android_version"
 
   testImplementation "junit:junit:$junit_version"
   testImplementation "com.google.truth:truth:$truth_version"
   testImplementation "androidx.test.ext:junit:$junit_ext_version"
-  testImplementation "com.google.dagger:hilt-android-testing:$hilt_android_version" // 1
-  testImplementation "org.robolectric:robolectric:$robolectric_version" // 2
-  kaptTest "com.google.dagger:hilt-android-compiler:$hilt_android_version"
 
   // Dependencies for Scenarios
   debugImplementation "androidx.fragment:fragment-testing:$fragment_testing_version"
   debugImplementation "androidx.test:core-ktx:$androidx_test_core_version"
+  testImplementation "junit:junit:4.13.2"
 
   androidTestImplementation "androidx.test.ext:junit:$andoidx_test_version"
   androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"
   androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_core_version"
+
+  testImplementation "com.google.dagger:hilt-android-testing:$hilt_android_version" // 1
+  testImplementation "org.robolectric:robolectric:4.10.3" // 2
+  kaptTest "com.google.dagger:hilt-android-compiler:$hilt_android_version" // 3
+  androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_android_version" // 1
+  kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_android_version" // 2
 }
